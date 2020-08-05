@@ -1,0 +1,6 @@
+name: Cubelets
+description: Sample Cubelets effect made for CubeCraft Games
+version: 1.0.0
+main: dev.fadest.cubelets.Cubelets
+author: Fadest
+website: "https://fadest.dev"

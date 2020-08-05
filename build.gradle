@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'dev.fadest'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+}
+
+dependencies {
+    compileOnly fileTree(dir: 'libraries', include: 'spigot.jar')
+}
+task copyTask(type: Copy) {
+    from 'build/libs/.'
+    into 'plugins'
+}
