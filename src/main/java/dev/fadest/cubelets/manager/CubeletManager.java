@@ -27,10 +27,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CubeletManager {
 
     private final Cubelets plugin;
-    private HashSet<Location> currentlyUsedCubelets;
+    private final HashSet<Location> currentlyUsedCubelets;
 
     public CubeletManager(Cubelets plugin) {
         this.plugin = plugin;
+        this.currentlyUsedCubelets = new HashSet<>();
     }
 
     public void openCubelet(Player player, Location cubeletLocation) {
