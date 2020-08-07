@@ -38,7 +38,7 @@ public class CubeletManager {
             @Override
             public void run() {
                 phase++;
-                if (handleConstruction(player, cubeletLocation, phase)) {
+                if (handleConstruction(cubeletLocation, phase)) {
                     Bukkit.getScheduler().runTaskLater(plugin, () -> spawnArmorStand(player, cubeletLocation), 5L);
                     this.cancel();
                 }
@@ -47,21 +47,20 @@ public class CubeletManager {
         buildingTask.runTaskTimer(plugin, 5, 5L);
     }
 
-    public boolean handleConstruction(Player player, Location location, int phase) {
+    public boolean handleConstruction(Location location, int phase) {
         switch (phase) {
             case 1:
+
                 changeBlockType(location.clone().add(1, -1, 0), Material.QUARTZ_BLOCK, (byte) 2);
                 changeBlockType(location.clone().add(0, -1, 1), Material.QUARTZ_BLOCK, (byte) 2);
                 changeBlockType(location.clone().add(-1, -1, 0), Material.QUARTZ_BLOCK, (byte) 2);
                 changeBlockType(location.clone().add(0, -1, -1), Material.QUARTZ_BLOCK, (byte) 2);
-                player.playEffect(player.getLocation(), Effect.STEP_SOUND, 0);
                 break;
             case 2:
                 changeBlockType(location.clone().add(1, -1, 1), Material.QUARTZ_BLOCK, (byte) 1);
                 changeBlockType(location.clone().add(-1, -1, 1), Material.QUARTZ_BLOCK, (byte) 1);
                 changeBlockType(location.clone().add(1, -1, -1), Material.QUARTZ_BLOCK, (byte) 1);
                 changeBlockType(location.clone().add(-1, -1, -1), Material.QUARTZ_BLOCK, (byte) 1);
-                player.playEffect(player.getLocation(), Effect.STEP_SOUND, 0);
                 break;
             case 3:
                 changeStairMaterial(location.clone().add(0, -1, 2), Material.QUARTZ_STAIRS);
@@ -76,14 +75,12 @@ public class CubeletManager {
                 changeStairMaterial(location.clone().add(-2, -1, 0), Material.QUARTZ_STAIRS);
                 changeStairMaterial(location.clone().add(-2, -1, -1), Material.QUARTZ_STAIRS);
                 changeStairMaterial(location.clone().add(-2, -1, 1), Material.QUARTZ_STAIRS);
-                player.playEffect(player.getLocation(), Effect.STEP_SOUND, 0);
                 break;
             case 4:
                 changeBlockType(location.clone().add(2, -1, 2), Material.QUARTZ_BLOCK, (byte) 2);
                 changeBlockType(location.clone().add(-2, -1, 2), Material.QUARTZ_BLOCK, (byte) 2);
                 changeBlockType(location.clone().add(2, -1, -2), Material.QUARTZ_BLOCK, (byte) 2);
                 changeBlockType(location.clone().add(-2, -1, -2), Material.QUARTZ_BLOCK, (byte) 2);
-                player.playEffect(player.getLocation(), Effect.STEP_SOUND, 0);
                 break;
             case 5:
             case 6:
@@ -93,7 +90,6 @@ public class CubeletManager {
                 changeBlockType(location.clone().add(-2, (phase - 5), 2), phase == 8 ? Material.STEP : Material.QUARTZ_BLOCK, phase == 8 ? (byte) 7 : (byte) 2);
                 changeBlockType(location.clone().add(2, (phase - 5), -2), phase == 8 ? Material.STEP : Material.QUARTZ_BLOCK, phase == 8 ? (byte) 7 : (byte) 2);
                 changeBlockType(location.clone().add(-2, (phase - 5), -2), phase == 8 ? Material.STEP : Material.QUARTZ_BLOCK, phase == 8 ? (byte) 7 : (byte) 2);
-                player.playEffect(player.getLocation(), Effect.STEP_SOUND, 0);
                 if (phase == 8) {
                     return true;
                 }
