@@ -19,6 +19,7 @@ import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,12 +27,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CubeletManager {
 
     private final Cubelets plugin;
+    private HashSet<Location> currentlyUsedCubelets;
 
     public CubeletManager(Cubelets plugin) {
         this.plugin = plugin;
     }
 
     public void openCubelet(Player player, Location cubeletLocation) {
+        currentlyUsedCubelets.add(cubeletLocation);
         BukkitRunnable buildingTask = new BukkitRunnable() {
             int phase = 0;
 
@@ -47,7 +50,7 @@ public class CubeletManager {
         buildingTask.runTaskTimer(plugin, 5, 5L);
     }
 
-    public boolean handleConstruction(Location location, int phase) {
+    private boolean handleConstruction(Location location, int phase) {
         switch (phase) {
             case 1:
 
@@ -250,6 +253,7 @@ public class CubeletManager {
                                         if (step == 50) {
                                             item.remove();
                                             handleDestruction(cubeletLocation);
+                                            currentlyUsedCubelets.remove(cubeletLocation);
                                             this.cancel();
                                             return;
                                         }
@@ -371,5 +375,9 @@ public class CubeletManager {
             ParticleEffect.REDSTONE.display(new ParticleEffect.OrdinaryColor(Color.WHITE),
                     location.clone().add(directionX, directionY, directionZ), players);
         }
+    }
+
+    public boolean isCubeletBeingUsing(Location location) {
+        return currentlyUsedCubelets.contains(location);
     }
 }
