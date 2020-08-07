@@ -311,9 +311,10 @@ public class CubeletManager {
     }
 
     private void spawnRectLineParticle(Location startingPoint, Location endLocation) {
+        List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
+        if (players.isEmpty()) return;
         double separation = 0.03;
         Vector lineVector = endLocation.toVector().subtract(startingPoint.toVector());
-        List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
 
         for (double line = 0; line < 1.2; line += separation) {
             Location point = startingPoint.clone().add(lineVector.getX() * line, lineVector.getY() * line, lineVector.getZ() * line);
@@ -360,6 +361,7 @@ public class CubeletManager {
 
     private void spawnHaloParticles(Location location) {
         List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
+        if (players.isEmpty()) return;
         double slice = 2 * Math.PI / 16;
         for (int i = 0; i < 16; i++) {
             double angle = slice * i;
