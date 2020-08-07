@@ -12,4 +12,4 @@ same as the video attached in the mail (https://www.youtube.com/watch?v=LYJ5j2Kp
 [img1]: https://i.imgur.com/8EYPAXr.png "Blocks"
 ![img1]
 
-Place the blocks mentioned above, and right click on the End Portal, then the animation will start
+Place the blocks mentioned above, and right click on the End Portal Frame, then the animation will start
