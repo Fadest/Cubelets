@@ -121,10 +121,9 @@ public class CubeletManager {
         Location armorStandLocation = cubeletLocation.clone();
         armorStandLocation.setYaw(player.getLocation().getYaw() + 180);
         ArmorStand armorStand = createAngelArmorStand(armorStandLocation);
+        armorStand.getWorld().strikeLightning(armorStandLocation);
         CraftArmorStand craftArmorStand = (CraftArmorStand) armorStand;
         craftArmorStand.getHandle().noclip = true;
-        armorStand.setHeadPose(armorStand.getHeadPose().setX(0.2));
-        armorStand.getWorld().strikeLightning(armorStandLocation);
         BukkitRunnable noClipRunnable = new BukkitRunnable() {
             double increaseY = 0;
 
@@ -178,6 +177,7 @@ public class CubeletManager {
         armorStand.setBasePlate(false);
         armorStand.setMarker(false);
         armorStand.setArms(true);
+        armorStand.setHeadPose(armorStand.getHeadPose().setX(0.2));
         return armorStand;
     }
 
