@@ -6,7 +6,7 @@ This Cubelet is inspired by the existing "Uber", but with an angelic theme. The 
 ## How to use it?
 
 *Note: Because it's a test plugin only made to show an animation, it would only be fully functional if the surrounding blocks are the 
-same as the video attached in the mail (https://www.youtube.com/watch?v=LYJ5j2KpZ7k), just as shown below:*
+same as this video (https://www.youtube.com/watch?v=LYJ5j2KpZ7k), just as shown below:*
 
 
 [img1]: https://i.imgur.com/8EYPAXr.png "Blocks"
